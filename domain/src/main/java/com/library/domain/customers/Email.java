@@ -21,15 +21,15 @@ public class Email extends ValueObject {
 		return _value;
 	}
 
-	public static Result<Email> Create(String email) {
-		email = email.trim();
+	public static Result<Email> Create(String value) {
+		value = value.trim();
 
-		if (email.isEmpty())
+		if (value.isEmpty())
 			return Result.error("Email should not be empty");
 
-		if (!VALID_EMAIL_ADDRESS_REGEX.matcher(email).find())
+		if (!VALID_EMAIL_ADDRESS_REGEX.matcher(value).find())
 			return Result.error("Email format is invalid");
 
-		return Result.ok(new Email(email));
+		return Result.ok(new Email(value));
 	}
 }
