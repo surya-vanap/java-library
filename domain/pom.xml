@@ -4,5 +4,12 @@
   <artifactId>com.library.domain</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>com.library.domain</name>
-  <description>domain classes</description>
+  <description>domain classes</description>  
+  <dependencies>
+  <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+  </dependencies>
 </project>
