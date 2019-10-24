@@ -1,10 +1,11 @@
-package com.library.domain.customers;
+package com.library.domain.users;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.StringUtils;
 
 import com.core.ddd.ValueObject;
+import com.core.utils.Result;
 
 public class UserEmail extends ValueObject {
 
@@ -25,9 +26,13 @@ public class UserEmail extends ValueObject {
 		return VALID_EMAIL_ADDRESS_REGEX.matcher(email).find();
 	}
 
-	public static UserEmail Create(final String email) {
-		Validate.notBlank(email, "email should not be empty");
-		Validate.isTrue(isEmailValid(email), "email format is invalid");
-		return new UserEmail(email);
+	public static Result<UserEmail> from(final String email) {
+		if (StringUtils.isBlank(email)) {
+			return Result.error("email should not be null or empty");
+		}
+		if (!isEmailValid(email)) {
+			return Result.error("email format is invalid");
+		}
+		return Result.ok(new UserEmail(email));
 	}
 }
